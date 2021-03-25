@@ -7,7 +7,7 @@ The Helm chart installs Valtimo keycloak.
 First configure the Helm repository:
 
 ```bash
-helm repo add delta10 https://delta10.github.io/charts/
+helm repo add delta10 https://delta10.github.io/helm-charts/
 helm repo update
 ```
 
