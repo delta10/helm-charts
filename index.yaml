@@ -3,6 +3,16 @@ entries:
   valtimo-console:
   - apiVersion: v2
     appVersion: 0.0.6
+    created: "2021-03-25T11:20:59.005781419Z"
+    description: The frontend for Valitmo
+    digest: 2ab9db103766ed8343fb030270d5da4974197e82276e029cd2460be095d99a1a
+    name: valtimo-console
+    type: application
+    urls:
+    - https://github.com/delta10/helm-charts/releases/download/valtimo-console-0.1.1/valtimo-console-0.1.1.tgz
+    version: 0.1.1
+  - apiVersion: v2
+    appVersion: 0.0.6
     created: "2021-03-25T11:19:04.898512554Z"
     description: The frontend for Valitmo
     digest: f0b9159f217f206ab7cc877ccda54f06fbdb987cf6cd30a78a05fa2b75f3cc1a
@@ -11,4 +21,32 @@ entries:
     urls:
     - https://github.com/delta10/helm-charts/releases/download/valtimo-console-0.1.0/valtimo-console-0.1.0.tgz
     version: 0.1.0
+  valtimo-keycloak:
+  - apiVersion: v2
+    appVersion: 0.0.4
+    created: "2021-03-25T11:20:59.157561801Z"
+    description: Keycloak configured for Valtimo
+    digest: 5e1857f968b8ddf542084cfe405f1e9782031f68b20e6758fe8f55159963cf76
+    name: valtimo-keycloak
+    type: application
+    urls:
+    - https://github.com/delta10/helm-charts/releases/download/valtimo-keycloak-0.1.1/valtimo-keycloak-0.1.1.tgz
+    version: 0.1.1
+  valtimo-server:
+  - apiVersion: v2
+    appVersion: 0.0.9
+    created: "2021-03-25T11:20:59.306500467Z"
+    dependencies:
+    - name: mysql
+      repository: https://charts.bitnami.com/bitnami
+      tags:
+      - mysql
+      version: ~8.5.1
+    description: The backend for Valtimo
+    digest: 7d7e811a3eac1845437e67b9bbde1557e99eb2c2e5a6787db9a8e6a68a1dbdbf
+    name: valtimo-server
+    type: application
+    urls:
+    - https://github.com/delta10/helm-charts/releases/download/valtimo-server-0.1.1/valtimo-server-0.1.1.tgz
+    version: 0.1.1
 generated: "2021-03-25T11:19:04.747697564Z"
