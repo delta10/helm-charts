@@ -1,0 +1,14 @@
+apiVersion: v1
+entries:
+  valtimo-console:
+  - apiVersion: v2
+    appVersion: 0.0.6
+    created: "2021-03-25T11:19:04.898512554Z"
+    description: The frontend for Valitmo
+    digest: f0b9159f217f206ab7cc877ccda54f06fbdb987cf6cd30a78a05fa2b75f3cc1a
+    name: valtimo-console
+    type: application
+    urls:
+    - https://github.com/delta10/helm-charts/releases/download/valtimo-console-0.1.0/valtimo-console-0.1.0.tgz
+    version: 0.1.0
+generated: "2021-03-25T11:19:04.747697564Z"
