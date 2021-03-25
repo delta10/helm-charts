@@ -4,5 +4,6 @@ This repository contains some Helm charts for [Common Ground](https://www.common
 
 View the detailed installation instructions and configuration heren:
 
-- [Valtimo console](./valtimo-console)
-- [Valtimo server](./valtimo-server)
+- [Valtimo console](./charts/valtimo-console)
+- [Valtimo keycloak](./charts/valtimo-keycloak)
+- [Valtimo server](./charts/valtimo-server)
