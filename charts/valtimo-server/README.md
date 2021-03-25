@@ -33,5 +33,7 @@ helm install valtimo-server delta10/valtimo-server
 | `ingress.annotations` | Additional annotations on the API ingress | `{}` |
 | `ingress.hosts` | Ingress hosts | `"{valtimo.gemeente.nl}"` |
 | `ingress.tls` | Ingress TLS settings | `"[]"` |
+| `keycloak.host` | The hostname of Keycloak | `"http://keycloak.gemeente.nl"` |
+| `keycloak.secret` | The secret of Keycloak | `"3ce18f4c-6506-42cf-8e0d-3f98b88635e3"` |
 
 Check [values.yaml](./values.yaml) for all the possible configuration options.
