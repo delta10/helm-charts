@@ -29,6 +29,7 @@ helm install valtimo-console delta10/valtimo-console
 | `ingress.enabled` | Expose the application through an ingress | `false` |
 | `ingress.annotations` | Additional annotations on the API ingress | `{}` |
 | `ingress.hosts` | Ingress hosts | `"{valtimo.gemeente.nl}"` |
-| `ingress.tls` | Ingress TLS settings | `"[]"` |
+| `ingress.tls` | Ingress TLS settings | `[]` |
+| `config` | The Valtimo console configuration | `{}` |
 
 Check [values.yaml](./values.yaml) for all the possible configuration options.

@@ -1,9 +1,9 @@
 replicaCount: 1
 
 image:
-  repository: ritense/valtimo-console
+  repository: delta10/valtimo-console
   pullPolicy: IfNotPresent
-  tag: ""
+  tag: latest
 
 imagePullSecrets: []
 nameOverride: ""
@@ -67,3 +67,10 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
+
+config:
+  baseUrl: http://valtimo.gemeente.nl
+  keycloak:
+    url: http://keycloak.gemeente.nl
+    realm: valtimo
+    clientId: valtimo-console
