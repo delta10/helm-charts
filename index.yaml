@@ -3,6 +3,16 @@ entries:
   valtimo-console:
   - apiVersion: v2
     appVersion: 0.0.6
+    created: "2021-04-06T18:01:28.28844806Z"
+    description: The frontend for Valitmo
+    digest: 0754492810792c8ea7caf53f6c2b43b6584d1995360a28467af5705940057c76
+    name: valtimo-console
+    type: application
+    urls:
+    - https://github.com/delta10/helm-charts/releases/download/valtimo-console-0.1.2/valtimo-console-0.1.2.tgz
+    version: 0.1.2
+  - apiVersion: v2
+    appVersion: 0.0.6
     created: "2021-03-25T11:20:59.005781419Z"
     description: The frontend for Valitmo
     digest: 2ab9db103766ed8343fb030270d5da4974197e82276e029cd2460be095d99a1a
@@ -24,6 +34,16 @@ entries:
   valtimo-keycloak:
   - apiVersion: v2
     appVersion: 0.0.4
+    created: "2021-04-06T18:01:28.414114643Z"
+    description: Keycloak configured for Valtimo
+    digest: be71dc12e53b65ebd8f3562b01c8cb50e9cb2ab05913bae4a778ea9235473708
+    name: valtimo-keycloak
+    type: application
+    urls:
+    - https://github.com/delta10/helm-charts/releases/download/valtimo-keycloak-0.1.2/valtimo-keycloak-0.1.2.tgz
+    version: 0.1.2
+  - apiVersion: v2
+    appVersion: 0.0.4
     created: "2021-03-25T11:20:59.157561801Z"
     description: Keycloak configured for Valtimo
     digest: 5e1857f968b8ddf542084cfe405f1e9782031f68b20e6758fe8f55159963cf76
@@ -33,6 +53,22 @@ entries:
     - https://github.com/delta10/helm-charts/releases/download/valtimo-keycloak-0.1.1/valtimo-keycloak-0.1.1.tgz
     version: 0.1.1
   valtimo-server:
+  - apiVersion: v2
+    appVersion: 0.0.9
+    created: "2021-04-06T18:01:28.577487961Z"
+    dependencies:
+    - name: mysql
+      repository: https://charts.bitnami.com/bitnami
+      tags:
+      - mysql
+      version: ~8.5.1
+    description: The backend for Valtimo
+    digest: c78415d6d6bd576eb03e71d304902f7ce98061b942081e1c41008853164e916e
+    name: valtimo-server
+    type: application
+    urls:
+    - https://github.com/delta10/helm-charts/releases/download/valtimo-server-0.1.2/valtimo-server-0.1.2.tgz
+    version: 0.1.2
   - apiVersion: v2
     appVersion: 0.0.9
     created: "2021-03-25T11:20:59.306500467Z"
