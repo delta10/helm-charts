@@ -96,6 +96,22 @@ entries:
     version: 0.1.1
   valtimo-server:
   - apiVersion: v2
+    appVersion: 0.0.11
+    created: "2021-04-21T19:44:46.373335277Z"
+    dependencies:
+    - name: mysql
+      repository: https://charts.bitnami.com/bitnami
+      tags:
+      - mysql
+      version: ~8.5.1
+    description: The backend for Valtimo
+    digest: fc5409148aa5d57d62e817f44f60f09dbeeaef8eee728c372ab3281d8cdf8934
+    name: valtimo-server
+    type: application
+    urls:
+    - https://github.com/delta10/helm-charts/releases/download/valtimo-server-0.1.4/valtimo-server-0.1.4.tgz
+    version: 0.1.4
+  - apiVersion: v2
     appVersion: 0.0.9
     created: "2021-04-06T18:01:28.577487961Z"
     dependencies:
