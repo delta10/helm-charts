@@ -76,7 +76,17 @@ settings:
     host: http://keycloak.gemeente.nl
     secret: 3ce18f4c-6506-42cf-8e0d-3f98b88635e3
 
+  database:
+    host: valtimo-server-mysql
+    port: 3306
+    name: valtimo
+    user: root
+    password: demo
+
 mysql:
+  image:
+    tag: 5.7.34
+
   auth:
     database: valtimo
     rootPassword: demo

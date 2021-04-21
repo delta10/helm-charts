@@ -7,3 +7,7 @@ metadata:
 data:
   KEYCLOAK_HOST: {{ .Values.settings.keycloak.host }}
   KEYCLOAK_SECRET: {{ .Values.settings.keycloak.secret }}
+  DATABASE_HOST: {{ .Values.settings.database.host }}
+  DATABASE_PORT: {{ .Values.settings.database.port | toString | quote }}
+  DATABASE_NAME: {{ .Values.settings.database.name }}
+  DATABASE_USER: {{ .Values.settings.database.user }}
