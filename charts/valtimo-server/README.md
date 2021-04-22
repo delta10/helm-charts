@@ -40,5 +40,7 @@ helm install valtimo-server delta10/valtimo-server
 | `settings.database.name` | Database name | `"valtimo"` |
 | `settings.database.user` | Database username | `"root"` |
 | `settings.database.password` | Database password | `"demo"` |
+| `mysql.auth.database` | MySQL database | `"valtimo"` |
+| `mysql.auth.rootPassword` | MySQL database root password | `"demo"` |
 
 Check [values.yaml](./values.yaml) for all the possible configuration options.
