@@ -1,9 +1,9 @@
 replicaCount: 1
 
 image:
-  repository: delta10/valtimo-console
+  repository: ritense/valtimo-console
   pullPolicy: IfNotPresent
-  tag: latest
+  tag: ""
 
 imagePullSecrets: []
 nameOverride: ""
