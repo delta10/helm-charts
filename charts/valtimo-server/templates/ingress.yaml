@@ -31,11 +31,15 @@ spec:
     - host: {{ . | quote }}
       http:
         paths:
-          - path: /management
+          - path: /api
             backend:
               serviceName: {{ $fullName }}
               servicePort: {{ $svcPort }}
-          - path: /api
+          - path: /docs
+            backend:
+              serviceName: {{ $fullName }}
+              servicePort: {{ $svcPort }}
+          - path: /management
             backend:
               serviceName: {{ $fullName }}
               servicePort: {{ $svcPort }}
@@ -43,7 +47,7 @@ spec:
             backend:
               serviceName: {{ $fullName }}
               servicePort: {{ $svcPort }}
-          - path: /docs
+          - path: /v2
             backend:
               serviceName: {{ $fullName }}
               servicePort: {{ $svcPort }}
