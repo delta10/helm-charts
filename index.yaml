@@ -83,6 +83,17 @@ entries:
     urls:
     - https://github.com/delta10/helm-charts/releases/download/alfresco-content-services-5.2.0/alfresco-content-services-5.2.0.tgz
     version: 5.2.0
+  nginx:
+  - apiVersion: v2
+    appVersion: 1.21.0
+    created: "2021-05-28T12:40:14.563019541Z"
+    description: A chart for running NGINX
+    digest: fdfb5a99190fcaa3856c1d39da45d00ab507f34ceeaa94d88df0c2dd2b75be80
+    name: nginx
+    type: application
+    urls:
+    - https://github.com/delta10/helm-charts/releases/download/nginx-0.1.0/nginx-0.1.0.tgz
+    version: 0.1.0
   valtimo-console:
   - apiVersion: v2
     appVersion: 0.0.8
