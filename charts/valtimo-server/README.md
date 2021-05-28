@@ -35,6 +35,7 @@ helm install valtimo-server delta10/valtimo-server
 | `ingress.tls` | Ingress TLS settings | `"[]"` |
 | `settings.keycloak.host` | Keycloak hostname | `"http://keycloak.gemeente.nl"` |
 | `settings.keycloak.secret` | Keycloak secret | `"3ce18f4c-6506-42cf-8e0d-3f98b88635e3"` |
+| `settings.keycloak.publicKey` | The public key of the Keycloak realm | `"MIIBIjANBgkqhkiG9w..."` |
 | `settings.database.host` | Database host | `"valtimo-server-mysql"` |
 | `settings.database.port` | Database port | `3306` |
 | `settings.database.name` | Database name | `"valtimo"` |

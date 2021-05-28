@@ -71,6 +71,7 @@ settings:
   keycloak:
     host: https://keycloak.test.valtimo.nl
     secret: 3ce18f4c-6506-42cf-8e0d-3f98b88635e3
+    publicKey: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAk2M6KDOUlF+1hqs4Jk/kR5CXrIqkJblZStBhOMIHuyN8t1xIRwQBH+MBi/UGmEfJNaPC3wB9RJ1AHDWGa83BuDdsB0+ZsE5qMvl8tvXeRA8BmE+LfbPnaeOpjbIQesJWoNHChavCykIjCsmA+5PcJJv7eAXg3tenrIwNl44lTQ8jNhCoWMzkVN5WvdDXC0aujG50lXxB3ogV9kVolqNWSggnqdH/aLHQ4F3bXYL2DJuOSl+rPUOK7cUXK7mcHk/bRB0Uj0HE0oa0pnFlJTqskD0IQnD7gIT5Jll0QPhfJAqk4P+8PYT21AlMRjBVhXzhk0a/LwmW2jiplGcBiBufLwIDAQAB
 
   database:
     host: valtimo-server-mysql

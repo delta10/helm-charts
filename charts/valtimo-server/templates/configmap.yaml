@@ -6,7 +6,7 @@ metadata:
     {{- include "valtimo-server.labels" . | nindent 4 }}
 data:
   KEYCLOAK_HOST: {{ .Values.settings.keycloak.host }}
-  KEYCLOAK_SECRET: {{ .Values.settings.keycloak.secret }}
+  KEYCLOAK_PUBLIC_KEY: {{ .Values.settings.keycloak.publicKey }}
   DATABASE_HOST: {{ .Values.settings.database.host }}
   DATABASE_PORT: {{ .Values.settings.database.port | toString | quote }}
   DATABASE_NAME: {{ .Values.settings.database.name }}
