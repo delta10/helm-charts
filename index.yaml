@@ -86,6 +86,16 @@ entries:
   nginx:
   - apiVersion: v2
     appVersion: 1.21.0
+    created: "2021-05-28T12:50:56.267962518Z"
+    description: A chart for running NGINX
+    digest: 6eda749c4e1af1693b43cb293e4e11ba64880acedf7bdb45668399ec46578dd4
+    name: nginx
+    type: application
+    urls:
+    - https://github.com/delta10/helm-charts/releases/download/nginx-0.1.1/nginx-0.1.1.tgz
+    version: 0.1.1
+  - apiVersion: v2
+    appVersion: 1.21.0
     created: "2021-05-28T12:40:14.563019541Z"
     description: A chart for running NGINX
     digest: fdfb5a99190fcaa3856c1d39da45d00ab507f34ceeaa94d88df0c2dd2b75be80
