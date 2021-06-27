@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ template "geoserver.fullname" . }}
+  labels:
+    {{- include "geoserver.labels" . | nindent 4 }}
+data:
+  INITIAL_MEMORY: {{ .Values.initialMemory | quote }}
+  MAXIMUM_MEMORY: {{ .Values.maximumMemory | quote }}
