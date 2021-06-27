@@ -83,6 +83,17 @@ entries:
     urls:
     - https://github.com/delta10/helm-charts/releases/download/alfresco-content-services-5.2.0/alfresco-content-services-5.2.0.tgz
     version: 5.2.0
+  geoserver:
+  - apiVersion: v2
+    appVersion: 2.19.0
+    created: "2021-06-27T15:12:15.50943536Z"
+    description: Open source server for sharing geospatial data
+    digest: 4593155ca728f824edd1791d334562a64644b613cb225dd62bed20ee012a24b1
+    name: geoserver
+    type: application
+    urls:
+    - https://github.com/delta10/helm-charts/releases/download/geoserver-0.1.0/geoserver-0.1.0.tgz
+    version: 0.1.0
   nginx:
   - apiVersion: v2
     appVersion: 1.21.0
@@ -103,6 +114,17 @@ entries:
     type: application
     urls:
     - https://github.com/delta10/helm-charts/releases/download/nginx-0.1.0/nginx-0.1.0.tgz
+    version: 0.1.0
+  postgis:
+  - apiVersion: v2
+    appVersion: 13-3
+    created: "2021-06-27T15:12:15.619557203Z"
+    description: Postgres database with GIS extension
+    digest: a72bbfc0b73911aaa8997953065cd1f781c91591a8ce6947068e110c12511f0f
+    name: postgis
+    type: application
+    urls:
+    - https://github.com/delta10/helm-charts/releases/download/postgis-0.1.0/postgis-0.1.0.tgz
     version: 0.1.0
   valtimo-console:
   - apiVersion: v2
