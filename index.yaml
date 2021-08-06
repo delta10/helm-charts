@@ -94,6 +94,16 @@ entries:
     urls:
     - https://github.com/delta10/helm-charts/releases/download/geoserver-0.1.0/geoserver-0.1.0.tgz
     version: 0.1.0
+  mapserver:
+  - apiVersion: v2
+    created: "2021-08-06T14:02:28.458329241Z"
+    description: A chart that deploys Mapserver
+    digest: 20e67938a9feb26fb2a93d7c8bdab2dd00c9df5c4bbec0a66b48150ef309101e
+    name: mapserver
+    type: application
+    urls:
+    - https://github.com/delta10/helm-charts/releases/download/mapserver-2.6.1/mapserver-2.6.1.tgz
+    version: 2.6.1
   nginx:
   - apiVersion: v2
     appVersion: 1.21.0
