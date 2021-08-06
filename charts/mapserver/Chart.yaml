@@ -1,0 +1,5 @@
+apiVersion: v2
+name: mapserver
+description: A chart that deploys Mapserver
+type: application
+version: 2.6.1
