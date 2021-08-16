@@ -7,3 +7,4 @@ metadata:
 data:
   HASURA_GRAPHQL_ENABLE_CONSOLE: {{ .Values.graphqlEnableConsole | quote }}
   HASURA_GRAPHQL_DEV_MODE: {{ .Values.graphqlDevMode | quote }}
+  HASURA_GRAPHQL_UNAUTHORIZED_ROLE: {{ .Values.graphqlUnauthorizedRole | quote }}

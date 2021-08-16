@@ -18,6 +18,7 @@ graphqlDatabaseUrl: postgres://username:password@hostname:5432/dbname
 graphqlEnableConsole: "true" # Enable the console served by server.
 graphqlDevMode: "true" # Enable debugging mode. It is recommended to disable this in production.
 graphqlAdminSecret: something-secret
+graphqlUnauthorizedRole: anonymous
 
 serviceAccount:
   # Specifies whether a service account should be created
