@@ -97,6 +97,16 @@ entries:
   graphql-engine:
   - apiVersion: v2
     appVersion: v2.0.6
+    created: "2021-08-16T14:09:47.958965186Z"
+    description: Instant realtime GraphQL
+    digest: fe54a0d795541620f9633892d6bd3aad342f44cb6f9767a730913776f7fada91
+    name: graphql-engine
+    type: application
+    urls:
+    - https://github.com/delta10/helm-charts/releases/download/graphql-engine-0.2.1/graphql-engine-0.2.1.tgz
+    version: 0.2.1
+  - apiVersion: v2
+    appVersion: v2.0.6
     created: "2021-08-16T13:24:58.508280993Z"
     description: Instant realtime GraphQL
     digest: 2bddd756bb44b1cd3d9a048ed40ab72b1861792704c58d3b02cc79c9c481256f
