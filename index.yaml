@@ -94,6 +94,17 @@ entries:
     urls:
     - https://github.com/delta10/helm-charts/releases/download/geoserver-0.1.0/geoserver-0.1.0.tgz
     version: 0.1.0
+  graphql-engine:
+  - apiVersion: v2
+    appVersion: v2.0.6
+    created: "2021-08-16T12:48:43.471383389Z"
+    description: Instant realtime GraphQL
+    digest: bc55d8990aad0e54a9577b28f2a54d37818cbf790b8172d5b57a82979c6a641e
+    name: graphql-engine
+    type: application
+    urls:
+    - https://github.com/delta10/helm-charts/releases/download/graphql-engine-0.1.0/graphql-engine-0.1.0.tgz
+    version: 0.1.0
   mapserver:
   - apiVersion: v2
     created: "2021-08-06T14:02:28.458329241Z"
