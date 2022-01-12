@@ -3,5 +3,5 @@ name: postgis
 description: Postgres database with GIS extension
 type: application
 
-version: 0.1.0
+version: 0.2.0
 appVersion: "13-3"
