@@ -159,6 +159,16 @@ entries:
   postgis:
   - apiVersion: v2
     appVersion: 13-3
+    created: "2022-01-12T15:03:50.998638498Z"
+    description: Postgres database with GIS extension
+    digest: 01a74379871e62dffd333350e6d6858c93d20be8009fb1a66b65678549694922
+    name: postgis
+    type: application
+    urls:
+    - https://github.com/delta10/helm-charts/releases/download/postgis-0.2.0/postgis-0.2.0.tgz
+    version: 0.2.0
+  - apiVersion: v2
+    appVersion: 13-3
     created: "2021-06-27T15:12:15.619557203Z"
     description: Postgres database with GIS extension
     digest: a72bbfc0b73911aaa8997953065cd1f781c91591a8ce6947068e110c12511f0f
