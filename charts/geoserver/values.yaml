@@ -14,6 +14,8 @@ maximumMemory: 512M
 stableExtensions: "" # See https://github.com/kartoza/docker-geoserver/blob/master/build_data/stable_plugins.txt
 communityExtensions: "" # See https://github.com/kartoza/docker-geoserver/blob/master/build_data/community_plugins.txt
 
+csrfWhitelist: ""
+
 persistence:
   enabled: true
   size: 1Gi
