@@ -11,6 +11,9 @@ adminPassword: something-secret
 initialMemory: 256M
 maximumMemory: 512M
 
+stableExtensions: "" # See https://github.com/kartoza/docker-geoserver/blob/master/build_data/stable_plugins.txt
+communityExtensions: "" # See https://github.com/kartoza/docker-geoserver/blob/master/build_data/community_plugins.txt
+
 persistence:
   enabled: true
   size: 1Gi

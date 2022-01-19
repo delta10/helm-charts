@@ -7,3 +7,5 @@ metadata:
 data:
   INITIAL_MEMORY: {{ .Values.initialMemory | quote }}
   MAXIMUM_MEMORY: {{ .Values.maximumMemory | quote }}
+  STABLE_EXTENSIONS: {{ .Values.stableExtensions | quote }}
+  COMMUNITY_EXTENSIONS: {{ .Values.communityExtensions | quote }}
