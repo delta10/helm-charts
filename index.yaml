@@ -209,6 +209,16 @@ entries:
     version: 0.1.0
   signalen-buitenbeter:
   - apiVersion: v2
+    appVersion: main
+    created: "2022-05-30T14:52:46.919985747Z"
+    description: A Helm chart for Kubernetes
+    digest: 2c6da4304456a7dac9cff4c67a6425a69809cf612b488de0d3efe835f1be91a5
+    name: signalen-buitenbeter
+    type: application
+    urls:
+    - https://github.com/delta10/helm-charts/releases/download/signalen-buitenbeter-0.1.1/signalen-buitenbeter-0.1.1.tgz
+    version: 0.1.1
+  - apiVersion: v2
     appVersion: 1.16.0
     created: "2022-05-30T13:56:58.206604078Z"
     description: A Helm chart for Kubernetes
