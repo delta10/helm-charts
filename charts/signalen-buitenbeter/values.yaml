@@ -5,7 +5,7 @@
 replicaCount: 1
 
 image:
-  repository: delta10/signalen-buitenbeter
+  repository: ghcr.io/delta10/signalen-buitenbeter
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
   tag: ""
@@ -38,6 +38,10 @@ securityContext: {}
 
 settings:
   signalenEndpoint: https://api.meldingen.gemeente.example.com/signals
+  jwtToken: something-secret
+  sourceName: "BuitenBeter"
+
+existingSecret: null # Refer to existing secret to avoid managing secrets through Helm
 
 service:
   type: ClusterIP
