@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: "{{ include "signalen-gw.fullname" . }}-test-connection"
+  labels:
+    {{- include "signalen-gw.labels" . | nindent 4 }}
+  annotations:
+    "helm.sh/hook": test
+spec:
+  containers:
+    - name: wget
+      image: busybox
+      command: ['wget']
+      args: ['{{ include "signalen-gw.fullname" . }}:{{ .Values.service.port }}']
+  restartPolicy: Never
