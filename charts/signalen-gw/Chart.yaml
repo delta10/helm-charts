@@ -1,7 +1,7 @@
 apiVersion: v2
-name: Signalen Gateway
-description: Provide a gateway from Signalen to other legacy applications
+name: signalen-gw
+description: Gateway from Signalen to other legacy applications
 type: application
 
 version: 0.1.0
-appVersion: "main"
+appVersion: 0.1.0
