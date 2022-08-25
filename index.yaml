@@ -155,6 +155,17 @@ entries:
     urls:
     - https://github.com/delta10/helm-charts/releases/download/graphql-engine-0.1.0/graphql-engine-0.1.0.tgz
     version: 0.1.0
+  gw:
+  - apiVersion: v2
+    appVersion: 0.1.0
+    created: "2022-08-25T11:51:43.19131715Z"
+    description: Gateway from Signalen to other legacy applications
+    digest: f25986ed139cdbbae8a2117d2ec7da6548c87e8082592fe5d0c5c9487ffe9e4d
+    name: gw
+    type: application
+    urls:
+    - https://github.com/delta10/helm-charts/releases/download/gw-0.2.0/gw-0.2.0.tgz
+    version: 0.2.0
   mapserver:
   - apiVersion: v2
     created: "2021-08-06T14:02:28.458329241Z"
