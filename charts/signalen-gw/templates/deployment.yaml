@@ -50,10 +50,16 @@ spec:
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
           envFrom:
-            - configMapRef:
-                name: {{ include "signalen-gw.fullname" . }}
             - secretRef:
                 name: {{ if .Values.existingSecret }}{{ .Values.existingSecret }}{{ else }}{{ include "signalen-gw.fullname" . }}{{ end }}
+          volumeMounts:
+            - name: config
+              mountPath: /app/settings.py
+              subPath: "settings.py"
+      volumes:
+        - name: config
+          configMap:
+            name: {{ include "signalen-gw.fullname" . }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}

@@ -5,5 +5,5 @@ metadata:
   labels:
     {{- include "signalen-gw.labels" . | nindent 4 }}
 data:
-  SIGNALEN_ENDPOINT: {{ .Values.settings.signalenEndpoint | quote }}
-  SOURCE_NAME: {{ .Values.settings.sourceName | quote }}
+  settings.py: |-
+    {{ .Values.settings | nindent 4 }}
