@@ -157,6 +157,16 @@ entries:
     version: 0.1.0
   gw:
   - apiVersion: v2
+    appVersion: 0.2.0
+    created: "2022-10-26T19:54:01.923227303Z"
+    description: Gateway from Signalen to other legacy applications
+    digest: c96aa7fade96ea35c41ce29d04576f4d85822e752a75c97802a0ed906702562c
+    name: gw
+    type: application
+    urls:
+    - https://github.com/delta10/helm-charts/releases/download/gw-0.3.0/gw-0.3.0.tgz
+    version: 0.3.0
+  - apiVersion: v2
     appVersion: 0.1.0
     created: "2022-08-25T11:51:43.19131715Z"
     description: Gateway from Signalen to other legacy applications
