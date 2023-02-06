@@ -85,6 +85,16 @@ entries:
     version: 5.2.0
   geoserver:
   - apiVersion: v2
+    appVersion: 2.22.0
+    created: "2023-02-06T17:46:26.122726119Z"
+    description: Open source server for sharing geospatial data
+    digest: 52734910a5e444bd34869b2bfb1f248919984b94326311e8c7b7f2b141163d87
+    name: geoserver
+    type: application
+    urls:
+    - https://github.com/delta10/helm-charts/releases/download/geoserver-0.4.0/geoserver-0.4.0.tgz
+    version: 0.4.0
+  - apiVersion: v2
     appVersion: 2.20.1
     created: "2022-01-19T14:27:15.359823766Z"
     description: Open source server for sharing geospatial data
