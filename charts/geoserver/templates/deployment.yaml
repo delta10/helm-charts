@@ -38,11 +38,6 @@ spec:
           volumeMounts:
             - name: data-dir
               mountPath: /opt/geoserver/data_dir
-          envFrom:
-            - configMapRef:
-                name: {{ template "geoserver.fullname" . }}
-            - secretRef:
-                name: {{ if .Values.existingSecret }}{{ .Values.existingSecret }}{{ else }}{{ template "geoserver.fullname" . }}{{ end }}
           ports:
             - name: http
               containerPort: 8080
@@ -57,6 +52,22 @@ spec:
               path: /
               port: http
             initialDelaySeconds: 60
+          env:
+            {{- range $key, $value := .Values.env }}
+            - name: {{ $key }}
+              value: {{ $value | quote }}
+            {{- end }}
+          {{- with .Values.envVars }}
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          envFrom:
+            - configMapRef:
+                name: {{ template "geoserver.fullname" . }}
+            - secretRef:
+                name: {{ if .Values.existingSecret }}{{ .Values.existingSecret }}{{ else }}{{ template "geoserver.fullname" . }}{{ end }}
+          {{- with .Values.envFrom }}
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       volumes:
