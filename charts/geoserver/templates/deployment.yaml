@@ -46,12 +46,13 @@ spec:
             httpGet:
               path: /
               port: http
-            initialDelaySeconds: 90
-          readinessProbe:
+            periodSeconds: 10
+          startupProbe:
             httpGet:
               path: /
               port: http
-            initialDelaySeconds: 60
+            failureThreshold: 60
+            periodSeconds: 10
           env:
             {{- range $key, $value := .Values.env }}
             - name: {{ $key }}
