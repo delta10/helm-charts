@@ -239,6 +239,16 @@ entries:
   mapserver:
   - apiVersion: v2
     appVersion: 7.6.4-patch-5-5-nl
+    created: "2023-07-05T08:50:47.597714065Z"
+    description: MapServer is an Open Source platform for publishing spatial data and interactive mapping applications to the web.
+    digest: 12b77d3766d1520579092f61d2fe42eabde7a4215b6788edb041160f48387327
+    name: mapserver
+    type: application
+    urls:
+    - https://github.com/delta10/helm-charts/releases/download/mapserver-3.0.2/mapserver-3.0.2.tgz
+    version: 3.0.2
+  - apiVersion: v2
+    appVersion: 7.6.4-patch-5-5-nl
     created: "2023-07-05T08:43:09.090544958Z"
     description: MapServer is an Open Source platform for publishing spatial data and interactive mapping applications to the web.
     digest: 542c5cf117461a6b322f27b02bb313d1fb6c48059d7611d0b0df5e450be3f847
