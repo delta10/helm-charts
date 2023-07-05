@@ -12,7 +12,7 @@ This Helm charts installs a Mapserver based on the [PDOK Mapserver Docker image]
 | `extraVolumes` | Ability to add exta volumes | `[]` |
 | `extraVolumeMounts` | Ability to add exta volume mounts | `[]` |
 | `envFrom` | Additional environment variables mounted from [secrets](https://kubernetes.io/docs/concepts/configuration/secret/#using-secrets-as-environment-variables) or [config maps](https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/#configure-all-key-value-pairs-in-a-configmap-as-container-environment-variables). | `[]` |
-| `env` | Additional environment variables passed directly to containers. | `{}` |
+| `env` | Additional environment variables passed directly to containers. | `{"MS_MAPFILE": "/config/example.map", "SERVICE_TYPE": "WMS"}` |
 | `envVars` | Similar to env but with support for all possible configurations. | `[]` |
 | `config` | Configuration that is mounted as ConfigMap into /config with a filename as key and contents as value | `{}` |
 | `ingress.enabled` | Expose the API through an ingress | `true` |
