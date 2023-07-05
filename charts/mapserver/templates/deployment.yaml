@@ -63,6 +63,9 @@ spec:
           volumeMounts:
             - name: config
               mountPath: /config
+{{- if ne (len .Values.extraVolumeMounts) 0 }}
+{{ toYaml .Values.extraVolumeMounts | indent 12 }}
+{{- end }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}

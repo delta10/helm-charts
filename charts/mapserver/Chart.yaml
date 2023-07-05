@@ -2,5 +2,5 @@ apiVersion: v2
 name: mapserver
 description: MapServer is an Open Source platform for publishing spatial data and interactive mapping applications to the web.
 type: application
-version: 3.0.0
+version: 3.0.1
 appVersion: "7.6.4-patch-5-5-nl"
