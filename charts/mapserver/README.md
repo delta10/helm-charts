@@ -15,7 +15,7 @@ This Helm charts installs a Mapserver based on the [PDOK Mapserver Docker image]
 | `env` | Additional environment variables passed directly to containers. | `{"MS_MAPFILE": "/config/example.map", "SERVICE_TYPE": "WMS"}` |
 | `envVars` | Similar to env but with support for all possible configurations. | `[]` |
 | `config` | Configuration that is mounted as ConfigMap into /config with a filename as key and contents as value | `{}` |
-| `ingress.enabled` | Expose the API through an ingress | `true` |
+| `ingress.enabled` | Expose the API through an ingress | `false` |
 | `ingress.annotations` | Additional annotations on the API ingress | `{}` |
 | `ingress.hosts` | The hosts of the ingress | `{}` |
 | `ingress.tls` | The TLS settings of the ingress | `{}` |
