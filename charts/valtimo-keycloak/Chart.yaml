@@ -1,7 +1,0 @@
-apiVersion: v2
-name: valtimo-keycloak
-description: Keycloak configured for Valtimo
-
-type: application
-version: 0.1.2
-appVersion: "0.0.4"

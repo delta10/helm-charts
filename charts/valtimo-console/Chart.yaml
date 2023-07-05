@@ -1,7 +1,0 @@
-apiVersion: v2
-name: valtimo-console
-description: The frontend for Valitmo
-
-type: application
-version: 0.1.3
-appVersion: "0.0.8"
