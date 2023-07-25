@@ -51,13 +51,11 @@ spec:
               containerPort: {{ .Values.service.port }}
               protocol: TCP
           livenessProbe:
-            httpGet:
-              path: /mapserver/?SERVICE=WMS&REQUEST=GetCapabilities
-              port: http
+            tcpSocket:
+              port: {{ .Values.service.port }}
           readinessProbe:
-            httpGet:
-              path: /mapserver/?SERVICE=WMS&REQUEST=GetCapabilities
-              port: http
+            tcpSocket:
+              port: {{ .Values.service.port }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
           volumeMounts:
