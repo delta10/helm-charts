@@ -40,16 +40,16 @@ spec:
             - name: http
               containerPort: 8080
               protocol: TCP
-          livenessProbe:
-            httpGet:
-              path: /
-              port: http
-            periodSeconds: 10
           startupProbe:
             httpGet:
-              path: /
+              path: /geoserver/
               port: http
             failureThreshold: 60
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /geoserver/
+              port: http
             periodSeconds: 10
           env:
             {{- range $key, $value := .Values.env }}
