@@ -14,8 +14,6 @@ spec:
   template:
     metadata:
       annotations:
-        checksum/configmap: {{ include (print $.Template.BasePath "/configmap.yaml") . | sha256sum }}
-        checksum/secret: {{ include (print $.Template.BasePath "/secret.yaml") . | sha256sum }}
       {{- with .Values.podAnnotations }}
         {{- toYaml . | nindent 8 }}
       {{- end }}
@@ -37,7 +35,7 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           volumeMounts:
             - name: data-dir
-              mountPath: /opt/geoserver/data_dir
+              mountPath: /opt/geoserver_data
           ports:
             - name: http
               containerPort: 8080
@@ -62,10 +60,6 @@ spec:
             {{- toYaml . | nindent 12 }}
           {{- end }}
           envFrom:
-            - configMapRef:
-                name: {{ template "geoserver.fullname" . }}
-            - secretRef:
-                name: {{ if .Values.existingSecret }}{{ .Values.existingSecret }}{{ else }}{{ template "geoserver.fullname" . }}{{ end }}
           {{- with .Values.envFrom }}
             {{- toYaml . | nindent 12 }}
           {{- end }}

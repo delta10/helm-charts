@@ -1,20 +1,9 @@
 replicaCount: 1
 
 image:
-  repository: kartoza/geoserver
+  repository: ghcr.io/delta10/geoserver
   pullPolicy: IfNotPresent
   tag: ""
-
-adminUser: admin
-adminPassword: something-secret
-
-initialMemory: 256M
-maximumMemory: 512M
-
-stableExtensions: "" # See https://github.com/kartoza/docker-geoserver/blob/master/build_data/stable_plugins.txt
-communityExtensions: "" # See https://github.com/kartoza/docker-geoserver/blob/master/build_data/community_plugins.txt
-
-csrfWhitelist: ""
 
 persistence:
   enabled: true
@@ -103,7 +92,12 @@ envFrom: []
 
 # -- Additional environment variables passed directly to containers.
 # See the [API reference](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#environment-variables) for details.
-env: {}
+env:
+  EXTRA_JAVA_OPTS: "-Xms256m -Xmx1g"
+  # CORS_ENABLED: "false"
+  # CORS_ALLOWED_METHODS=GET,POST,PUT,HEAD,OPTIONS
+  # INSTALL_EXTENSIONS: "true"
+  # STABLE_EXTENSIONS: ""
 
 # -- Similar to env but with support for all possible configurations.
 # See the [API reference](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#environment-variables) for details.
