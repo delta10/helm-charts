@@ -43,6 +43,8 @@ spec:
             {{- toYaml . | nindent 12 }}
           {{- end }}
           envFrom:
+            - secretRef:
+                name: {{ if .Values.existingSecret }}{{ .Values.existingSecret }}{{ else }}{{ include "filter-proxy.fullname" . }}{{ end }}
           {{- with .Values.envFrom }}
             {{- toYaml . | nindent 12 }}
           {{- end }}

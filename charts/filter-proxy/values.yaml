@@ -43,9 +43,7 @@ envFrom: []
 
 # -- Additional environment variables passed directly to containers.
 # See the [API reference](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#environment-variables) for details.
-env:
-  MS_MAPFILE: /config/example.map
-  SERVICE_TYPE: WMS
+env: {}
 
 # -- Similar to env but with support for all possible configurations.
 # See the [API reference](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#environment-variables) for details.
@@ -62,6 +60,12 @@ envVars: []
 #     configMapKeyRef:
 #       name: config-map-name
 #       key: config-map-key
+
+# Refer to existing secret to avoid managing secrets through Helm
+existingSecret: ""
+
+secrets:
+  API_KEY: something-secret
 
 config:
   listenAddress: 0.0.0.0:8080
