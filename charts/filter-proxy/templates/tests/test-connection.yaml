@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: "{{ include "filter-proxy.fullname" . }}-test-connection"
+  labels:
+    {{- include "filter-proxy.labels" . | nindent 4 }}
+  annotations:
+    "helm.sh/hook": test
+spec:
+  containers:
+    - name: wget
+      image: busybox
+      command: ['wget']
+      args: ['{{ include "filter-proxy.fullname" . }}:{{ .Values.service.port }}']
+  restartPolicy: Never

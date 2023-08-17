@@ -1,0 +1,7 @@
+apiVersion: v2
+name: filter-proxy
+description: A HTTP proxy that is able to filter JSON responses
+
+type: application
+version: 0.1.0
+appVersion: "0.2.1"
