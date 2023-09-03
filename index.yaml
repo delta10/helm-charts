@@ -86,6 +86,16 @@ entries:
   filter-proxy:
   - apiVersion: v2
     appVersion: 0.2.1
+    created: "2023-09-03T11:30:55.071023336Z"
+    description: A HTTP proxy that is able to filter JSON responses
+    digest: 8f1a8f9512ef8759d9cd1483f4bbd9257f5b36f0060e9bb636f525867e37f758
+    name: filter-proxy
+    type: application
+    urls:
+    - https://github.com/delta10/helm-charts/releases/download/filter-proxy-0.1.2/filter-proxy-0.1.2.tgz
+    version: 0.1.2
+  - apiVersion: v2
+    appVersion: 0.2.1
     created: "2023-08-17T11:32:39.16700359Z"
     description: A HTTP proxy that is able to filter JSON responses
     digest: 4be01e8db0a1f603da6a6d029173ac8274003076ac94a6e7bf3b7663280e79cc
@@ -95,6 +105,16 @@ entries:
     - https://github.com/delta10/helm-charts/releases/download/filter-proxy-0.1.1/filter-proxy-0.1.1.tgz
     version: 0.1.1
   geoserver:
+  - apiVersion: v2
+    appVersion: 2.23.2-1
+    created: "2023-09-03T11:30:55.207952002Z"
+    description: Open source server for sharing geospatial data
+    digest: c396eb0bb863b6644dd0178cccd27b225d7db28d87f89162cf7cc4feae01b21d
+    name: geoserver
+    type: application
+    urls:
+    - https://github.com/delta10/helm-charts/releases/download/geoserver-1.0.3/geoserver-1.0.3.tgz
+    version: 1.0.3
   - apiVersion: v2
     appVersion: 2.23.2-1
     created: "2023-08-19T12:43:39.121487933Z"
@@ -278,6 +298,16 @@ entries:
     - https://github.com/delta10/helm-charts/releases/download/gw-0.2.0/gw-0.2.0.tgz
     version: 0.2.0
   mapserver:
+  - apiVersion: v2
+    appVersion: 7.6.4-patch-5-5-nl
+    created: "2023-09-03T11:30:55.347615545Z"
+    description: MapServer is an Open Source platform for publishing spatial data and interactive mapping applications to the web.
+    digest: 56d947ab81c732d89a0c4341df1f0094149802b65ba82a5a0641f858eeeeab89
+    name: mapserver
+    type: application
+    urls:
+    - https://github.com/delta10/helm-charts/releases/download/mapserver-3.0.4/mapserver-3.0.4.tgz
+    version: 3.0.4
   - apiVersion: v2
     appVersion: 7.6.4-patch-5-5-nl
     created: "2023-07-25T13:36:35.260906851Z"
