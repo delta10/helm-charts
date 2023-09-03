@@ -1,9 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: {{ include "signalen-buitenbeter.fullname" . }}
-  labels:
-    {{- include "signalen-buitenbeter.labels" . | nindent 4 }}
-data:
-  SIGNALEN_ENDPOINT: {{ .Values.settings.signalenEndpoint | quote }}
-  SOURCE_NAME: {{ .Values.settings.sourceName | quote }}
