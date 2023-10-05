@@ -69,17 +69,42 @@ secrets:
 
 config:
   listenAddress: 0.0.0.0:8080
-
-  jwksUrl: https://login.microsoftonline.com/common/discovery/v2.0/keys
+  authorizationServiceUrl: http://localhost:8000/atlas/api/v1/authorize
 
   paths:
+    - path: /api/ows
+      backend:
+        slug: geoserver
+        path: /ows
+    - path: /api/wmts
+      backend:
+        slug: geoserver
+        path: /gwc/service/wmts
+    - path: /api/brp/v1/personen
+      allowedMethods:
+        - POST
+      backend:
+        slug: brp
+        path: /personen
+      requestRewrite: |
+        (
+          if .geslachtsnaam and .geslachtsnaam != "" then {
+            type: "ZoekMetGeslachtsnaamEnGeboortedatum",
+            geslachtsnaam: .geslachtsnaam,
+            geboortedatum: .geboortedatum,
+            fields: ["burgerservicenummer","geboorte", "geslacht", "naam", "adressering"]
+          } else {
+            type: "RaadpleegMetBurgerservicenummer",
+            burgerservicenummer: [ .burgerservicenummer ],
+            fields: ["burgerservicenummer","geboorte", "geslacht", "naam", "adressering"]
+          }
+          end
+        )
     - path: /api/brk/v1/kadastraalonroerendezaken/{kadastraalOnroerendeZaakIdentificatie:[0-9]+}
       backend:
-        url: https://api.brk.kadaster.nl/esd-eto-apikey/bevragen/v1/kadastraalonroerendezaken/{kadastraalOnroerendeZaakIdentificatie:[0-9]+}
-      authorization:
-        groups:
-          - /BRK Bevragen
-      filter: |
+        slug: brk
+        path: /kadastraalonroerendezaken/{kadastraalOnroerendeZaakIdentificatie:[0-9]+}
+      responseRewrite: |
         {
           aardCultuurBebouwd: .aardCultuurBebouwd,
           adressen: .adressen,
@@ -92,9 +117,92 @@ config:
           plaatscoordinaten: .plaatscoordinaten,
           toelichtingBewaarder: .toelichtingBewaarder,
           type: .type,
-          zakelijkGerechtigdeIdentificaties: .zakelijkGerechtigdeIdentificaties,
-          bijbehorendeAppartementsrechten: .bijbehorendeAppartementsrechten
+          zakelijkGerechtigdeIdentificaties: .zakelijkGerechtigdeIdentificaties
         }
+    - path: /api/brk/v1/kadastraalonroerendezaken/{kadastraalOnroerendeZaakIdentificatie:[0-9]+}/zakelijkgerechtigden
+      backend:
+        slug: brk
+        path: /kadastraalonroerendezaken/{kadastraalOnroerendeZaakIdentificatie:[0-9]+}/zakelijkgerechtigden
+      responseRewrite: |
+        {
+          "_embedded": {
+            "zakelijkGerechtigden": [
+              ._embedded.zakelijkGerechtigden[] |
+                {
+                  "aanvangsdatum": .aanvangsdatum,
+                  "type": .type,
+                  "persoon": .persoon | {
+                    "omschrijving": .omschrijving,
+                    "type": .type
+                  },
+                  "tenaamstelling": .tenaamstelling | {
+                    "aandeel": .aandeel,
+                    "isGebaseerdOpStukdeelIdentificaties": .isGebaseerdOpStukdeelIdentificaties,
+                    "stukIdentificaties": .stukIdentificaties,
+                    "betrokkenGorzenEnAanwassen": .betrokkenGorzenEnAanwassen | {
+                      "omschrijving": .omschrijving,
+                      "type": .type
+                    },
+                    "betrokkenPartner": .betrokkenPartner | {
+                      "omschrijving": .omschrijving,
+                      "type": .type
+                    },
+                    "betrokkenSamenwerkingsverband": .betrokkenSamenwerkingsverband | {
+                      "omschrijving": .omschrijving,
+                      "type": .type
+                    },
+                    "burgerlijkeStaatTenTijdeVanVerkrijging": .burgerlijkeStaatTenTijdeVanVerkrijging | {
+                      "code": .code,
+                      "waarde": .waarde
+                    }
+                  },
+                }
+            ]
+          }
+        }
+    - path: /api/brk/v1/publiekrechtelijkebeperkingen
+      backend:
+        slug: brk
+        path: /publiekrechtelijkebeperkingen
+      responseRewrite: |
+        {
+          "_embedded": {
+            "publiekrechtelijkeBeperkingen": [
+              ._embedded.publiekrechtelijkeBeperkingen[] |
+                {
+                  "identificatie": .identificatie,
+                  "domein": .domein,
+                  "grondslag": .grondslag,
+                  "datumInWerking": .datumInWerking,
+                  "datumBeeindiging": .datumBeeindiging,
+                  "bevoegdGezag": .bevoegdGezag | {
+                      "omschrijving": .omschrijving,
+                      "type": .type
+                  },
+                  "stukIdentificaties": .stukIdentificaties,
+                  "isGebaseerdOpStukdeelIdentificatie": .isGebaseerdOpStukdeelIdentificatie
+                }
+            ]
+          }
+        }
+
+  backends:
+    geoserver:
+      baseUrl: http://localhost:8051/geoserver
+      auth:
+        basic:
+          username: admin
+          password: geoserver
+    brk:
+      baseUrl: https://api.brk.kadaster.nl/esd-eto-apikey/bevragen/v1
+      auth:
+        header:
+          X-Api-Key: ${BRK_API_KEY}
+    brp:
+      baseUrl: https://proefomgeving.haalcentraal.nl/haalcentraal/api/brp
+      auth:
+        header:
+          X-API-KEY: ${BRP_API_KEY}
 
 service:
   type: ClusterIP
