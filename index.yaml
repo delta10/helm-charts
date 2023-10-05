@@ -85,6 +85,16 @@ entries:
     version: 5.2.0
   filter-proxy:
   - apiVersion: v2
+    appVersion: 0.3.3
+    created: "2023-10-05T09:40:50.799959567Z"
+    description: A HTTP proxy that is able to filter JSON responses
+    digest: 454c86328f027c4266be364f17c429254cb0a7b04fc2819a988d7dd837288bca
+    name: filter-proxy
+    type: application
+    urls:
+    - https://github.com/delta10/helm-charts/releases/download/filter-proxy-0.2.3/filter-proxy-0.2.3.tgz
+    version: 0.2.3
+  - apiVersion: v2
     appVersion: 0.3.2
     created: "2023-10-05T09:37:55.929143833Z"
     description: A HTTP proxy that is able to filter JSON responses
