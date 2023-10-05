@@ -3,5 +3,5 @@ name: filter-proxy
 description: A HTTP proxy that is able to filter JSON responses
 
 type: application
-version: 0.2.2
-appVersion: "0.3.2"
+version: 0.2.3
+appVersion: "0.3.3"
