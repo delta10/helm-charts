@@ -69,7 +69,7 @@ secrets:
 
 config:
   listenAddress: 0.0.0.0:8080
-  authorizationServiceUrl: http://localhost:8000/atlas/api/v1/authorize
+  authorizationServiceUrl: http://localhost:8000/atlas/api/v1/authorize/
 
   paths:
     - path: /api/ows
