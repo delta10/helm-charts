@@ -40,17 +40,10 @@ spec:
             - name: http
               containerPort: 8080
               protocol: TCP
-          startupProbe:
-            httpGet:
-              path: /geoserver/
-              port: http
-            failureThreshold: 60
-            periodSeconds: 10
           livenessProbe:
-            httpGet:
-              path: /geoserver/
-              port: http
-            periodSeconds: 10
+            {{- toYaml .Values.livenessProbe | nindent 12 }}
+          readinessProbe:
+            {{- toYaml .Values.readinessProbe | nindent 12 }}
           env:
             {{- range $key, $value := .Values.env }}
             - name: {{ $key }}
