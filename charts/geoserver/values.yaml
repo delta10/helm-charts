@@ -73,6 +73,30 @@ resources:
   #   cpu: 100m
   #   memory: 128Mi
 
+startupProbe:
+  httpGet:
+    path: /geoserver/
+    port: http
+  periodSeconds: 10
+  timeoutSeconds: 10
+  failureThreshold: 30
+
+livenessProbe:
+  httpGet:
+    path: /geoserver/
+    port: http
+  periodSeconds: 10
+  timeoutSeconds: 10
+  failureThreshold: 10
+
+readinessProbe:
+  httpGet:
+    path: /geoserver/
+    port: http
+  periodSeconds: 10
+  timeoutSeconds: 10
+  failureThreshold: 10
+
 autoscaling:
   enabled: false
   minReplicas: 1
