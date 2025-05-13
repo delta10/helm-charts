@@ -29,11 +29,16 @@ ingress:
   className: "nginx"
   annotations:
     kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/use-regex: "true"
   hosts:
     - host: signalen-frontend.signals.local
       paths:
         - path: /manage
           pathType: Prefix
+          serviceName: signalen-frontend
+          port: 80
+        - path: /(npm|runtime|favicon\.png|main|css|leaflet|vendor|src_|amsterdam-logo.svg|icon_180x180\.png|assets)
+          pathType: ImplementationSpecific
           serviceName: signalen-frontend
           port: 80
         - path: /
