@@ -50,6 +50,40 @@ spec:
             periodSeconds: 10
           ports:
             - name: http
+              containerPort: 8080
+              protocol: TCP
+          volumeMounts:
+            - name: config
+              mountPath: /app.json
+              subPath: "app.json"
+
+        - name: wcag
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{- index .Values "signalen-wcag" "repository" }}:{{ index .Values "signalen-wcag" "tag" }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          {{- if ne (len .Values.command) 0 }}
+          command: {{ toYaml .Values.command | nindent 12 }}
+          {{- end }}
+          {{- if ne (len .Values.args) 0 }}
+          args: {{ toYaml .Values.args | nindent 12 }}
+          {{- end  }}
+          resources:
+          {{- toYaml .Values.resources | nindent 12 }}
+          livenessProbe:
+            httpGet:
+              path: /
+              port: http
+            initialDelaySeconds: 30
+            periodSeconds: 10
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http
+            initialDelaySeconds: 1
+            periodSeconds: 10
+          ports:
+            - name: http
               containerPort: 3000
               protocol: TCP
           volumeMounts:

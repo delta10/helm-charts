@@ -1,0 +1,59 @@
+replicaCount: 1
+
+image:
+  repository: signalen/frontend
+  tag: "2.26.2"
+  pullPolicy: IfNotPresent
+  serviceName: signalen-frontend
+
+signalen-wcag:
+  enabled: true
+  tag: "main"
+  repository: ghcr.io/delta10/signalen-frontend-wcag
+  pullPolicy: IfNotPresent
+  port: 3000
+  serviceName: signalen-frontend-wcag
+
+podAnnotations: {}
+
+podSecurityContext: {}
+
+securityContext: {}
+
+service:
+  type: ClusterIP
+  port: 80
+
+ingress:
+  enabled: true
+  className: "nginx"
+  annotations:
+    kubernetes.io/ingress.class: nginx
+  hosts:
+    - host: signalen-frontend.signals.local
+      paths:
+        - path: /manage
+          pathType: Prefix
+          serviceName: signalen-frontend
+          port: 80
+        - path: /
+          pathType: Prefix
+          serviceName: signalen-frontend-wcag
+          port: 3000
+
+  tls:
+    - secretName: frontend-tls
+      hosts:
+        - signalen-frontend.signals.local
+
+resources: {}
+
+config: {}
+
+extraVolumes: []
+extraVolumeMounts: []
+
+initContainers: []
+
+command: []
+args: []
