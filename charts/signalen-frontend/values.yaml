@@ -8,7 +8,7 @@ image:
 
 signalen-wcag:
   enabled: true
-  tag: "main"
+  tag: ""
   repository: ghcr.io/delta10/signalen-frontend-wcag
   pullPolicy: IfNotPresent
   port: 3000
@@ -33,7 +33,7 @@ ingress:
   hosts:
     - host: signalen-frontend.signals.local
       paths:
-        - path: /(manage|npm|runtime|favicon\.png|main|css|leaflet|vendor|.*\.chunk\.js|amsterdam-logo.svg|icon_180x180\.png|assets)
+        - path: /(manage|npm|runtime|favicon\.png|main|css|leaflet|vendor|.*\.chunk\.js|amsterdam-logo.svg|icon_180x180\.png)
           pathType: ImplementationSpecific
           serviceName: signalen-frontend
           port: 80
@@ -50,6 +50,34 @@ ingress:
 resources: {}
 
 config: {}
+
+theme: |
+  body {
+    background-color: #000;
+  }
+
+  .leaflet-container {
+    height: 100%;
+  }
+
+  .leaflet-popup-content {
+    font-size: 14px;
+  }
+
+  .leaflet-popup-content img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .leaflet-popup-content a {
+    color: #007bff;
+    text-decoration: none;
+  }
+
+  .leaflet-popup-content a:hover {
+    text-decoration: underline;
+  }
+
 
 extraVolumes: []
 extraVolumeMounts: []

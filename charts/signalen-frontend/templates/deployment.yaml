@@ -90,6 +90,9 @@ spec:
             - name: config
               mountPath: /app.json
               subPath: "app.json"
+            - name: config
+              mountPath: /app/public/assets/theme.css
+              subPath: "theme.css"
 {{- if ne (len .Values.extraVolumeMounts) 0 }}
 {{ toYaml .Values.extraVolumeMounts | indent 12 }}
 {{- end }}
