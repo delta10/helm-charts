@@ -84,7 +84,7 @@ spec:
             periodSeconds: 10
           ports:
             - name: http
-              containerPort: {{- index .Values "frontend-wcag" "image" "port" }}
+              containerPort: {{ index .Values "frontend-wcag" "image" "port" }}
               protocol: TCP
           volumeMounts:
             - name: config

@@ -7,13 +7,13 @@ image:
   serviceName: signalen-frontend
 
 frontend-wcag:
-    enabled: true
-    image:
-      tag: ""
-      repository: ghcr.io/delta10/signalen-frontend-wcag
-      pullPolicy: IfNotPresent
-      port: 3000
-    serviceName: signalen-frontend-wcag
+  enabled: true
+  image:
+    tag: ""
+    repository: ghcr.io/delta10/signalen-frontend-wcag
+    pullPolicy: IfNotPresent
+    port: 3000
+  serviceName: signalen-frontend-wcag
 
 podAnnotations: {}
 
