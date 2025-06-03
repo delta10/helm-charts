@@ -14,11 +14,11 @@ spec:
       port: {{ .Values.service.port }}
       targetPort: http
 ---
-{{- if index .Values "signalen-wcag" "enabled" }}
+{{- if index .Values "frontend-wcag" "enabled" }}
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ index .Values "signalen-wcag" "serviceName" }}
+  name: {{ index .Values "frontend-wcag" "serviceName" }}
   labels:
     {{- include "signals-frontend.labels" . | nindent 4 }}
 spec:

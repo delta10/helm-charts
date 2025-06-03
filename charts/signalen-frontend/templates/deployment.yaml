@@ -60,8 +60,8 @@ spec:
         - name: wcag
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
-          image: "{{- index .Values "signalen-wcag" "repository" }}:{{ index .Values "signalen-wcag" "tag" }}"
-          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          image: "{{- index .Values "frontend-wcag" "image" "repository" }}:{{ index .Values "frontend-wcag" "image" "tag" }}"
+          imagePullPolicy: {{ index .Values "frontend-wcag" "image" "pullPolicy" }}
           {{- if ne (len .Values.command) 0 }}
           command: {{ toYaml .Values.command | nindent 12 }}
           {{- end }}
@@ -84,7 +84,7 @@ spec:
             periodSeconds: 10
           ports:
             - name: http
-              containerPort: 3000
+              containerPort: {{- index .Values "frontend-wcag" "image" "port" }}
               protocol: TCP
           volumeMounts:
             - name: config
