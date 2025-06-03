@@ -60,7 +60,7 @@ spec:
         - name: wcag
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
-          image: "{{- index .Values "frontend-wcag" "image" "repository" }}:{{ index .Values "frontend-wcag" "image" "tag" }}"
+          image: "{{- index .Values "frontend-wcag" "image" "repository" }}:{{- index .Values "frontend-wcag" "image" "tag" | default .Chart.AppVersion }}"
           imagePullPolicy: {{ index .Values "frontend-wcag" "image" "pullPolicy" }}
           {{- if ne (len .Values.command) 0 }}
           command: {{ toYaml .Values.command | nindent 12 }}
