@@ -52,6 +52,8 @@ resources: {}
 
 config: {}
 
+configWcag: {}
+
 theme: |
   body {
     background-color: #000;

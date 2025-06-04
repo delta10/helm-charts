@@ -6,5 +6,7 @@ metadata:
 data:
   app.json: |-
     {{ .Values.config | toJson | nindent 4 }}
+  config.json: |-
+    {{ .Values.configWcag | toJson | nindent 4 }}
   theme.css: |-
     {{ .Values.theme | nindent 4 }}
