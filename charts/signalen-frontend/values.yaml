@@ -1,0 +1,91 @@
+replicaCount: 1
+
+image:
+  repository: signalen/frontend
+  tag: "2.26.2"
+  pullPolicy: IfNotPresent
+  serviceName: signalen-frontend
+
+frontend-wcag:
+  enabled: true
+  image:
+    tag: "0.1.0"
+    repository: ghcr.io/delta10/signalen-frontend-wcag
+    pullPolicy: IfNotPresent
+    port: 3000
+  serviceName: signalen-frontend-wcag
+
+podAnnotations: {}
+
+podSecurityContext: {}
+
+securityContext: {}
+
+service:
+  type: ClusterIP
+  port: 80
+
+ingress:
+  enabled: true
+  className: "nginx"
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/use-regex: "true"
+  hosts:
+    - host: signalen-frontend.signals.local
+      paths:
+        - path: /(manage|npm|runtime|favicon\.png|main|css|leaflet|vendor|.*\.chunk\.js|amsterdam-logo.svg|icon_180x180\.png)
+          pathType: ImplementationSpecific
+          serviceName: signalen-frontend
+          port: 80
+        - path: /
+          pathType: Prefix
+          serviceName: signalen-frontend-wcag
+          port: 3000
+
+  tls:
+    - secretName: frontend-tls
+      hosts:
+        - signalen-frontend.signals.local
+
+resources: {}
+
+config: {}
+
+configWcag: {}
+
+theme: |
+  body {
+    background-color: #000;
+  }
+
+  .leaflet-container {
+    height: 100%;
+  }
+
+  .leaflet-popup-content {
+    font-size: 14px;
+  }
+
+  .leaflet-popup-content img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .leaflet-popup-content a {
+    color: #007bff;
+    text-decoration: none;
+  }
+
+  .leaflet-popup-content a:hover {
+    text-decoration: underline;
+  }
+
+
+extraVolumes: []
+extraVolumeMounts: []
+
+initContainers: []
+
+command: []
+args: []
