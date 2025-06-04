@@ -9,7 +9,7 @@ image:
 frontend-wcag:
   enabled: true
   image:
-    tag: ""
+    tag: "0.1.0"
     repository: ghcr.io/delta10/signalen-frontend-wcag
     pullPolicy: IfNotPresent
     port: 3000
