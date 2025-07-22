@@ -54,6 +54,8 @@ config: {}
 
 configWcag: {}
 
+wcagEnv: {}
+
 theme: |
   body {
     background-color: #000;

@@ -68,8 +68,15 @@ spec:
           {{- if ne (len .Values.args) 0 }}
           args: {{ toYaml .Values.args | nindent 12 }}
           {{- end  }}
+          {{- if .Values.wcagEnv }}
+          env:
+            {{- range $key, $value := .Values.wcagEnv }}
+            - name: {{ $key }}
+              value: {{ $value | quote }}
+            {{- end }}
+          {{- end }}
           resources:
-          {{- toYaml .Values.resources | nindent 12 }}
+            {{- toYaml .Values.resources | nindent 12 }}
           livenessProbe:
             httpGet:
               path: /
