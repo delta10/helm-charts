@@ -683,6 +683,16 @@ entries:
   signalen-frontend:
   - apiVersion: v2
     appVersion: 0.1.0
+    created: "2025-07-22T14:51:50.583671009Z"
+    description: The web frontend for the Signals application
+    digest: c0a17534fc32e8c97363549fdfdfba68422466ae8c398785604d6cc811e5cb55
+    name: signalen-frontend
+    type: application
+    urls:
+    - https://github.com/delta10/helm-charts/releases/download/signalen-frontend-0.1.1/signalen-frontend-0.1.1.tgz
+    version: 0.1.1
+  - apiVersion: v2
+    appVersion: 0.1.0
     created: "2025-06-04T09:07:04.803022795Z"
     description: The web frontend for the Signals application
     digest: 4e42ca936c14789f0dab6556e7a695762ce43b1a2067e7ae50474ff34bfc5820
