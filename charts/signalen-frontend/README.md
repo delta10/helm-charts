@@ -17,7 +17,6 @@ This Helm chart contains the Signalen web frontend + the new WCAG Frontend .
 | `replicaCount` | The number of API replicas | `1` |
 | `config` | The configuration of the signalen frontend. For all options see [app.json](https://github.com/Signalen/frontend/blob/develop/app.base.json) | `{}` |
 | `configWcag` | The configuration of the signalen wcag frontend. For all options see [app.json](https://github.com/delta10/signalen-frontend-wcag/blob/main/config.json) | `{}` |
-| `envWcag` | Environment variables for the wcag frontend | `{}` |
 | `theme` | The css styling for the wcag frontend. For options see [theme.css](https://github.com/delta10/signalen-frontend-wcag/blob/main/public/assets/theme.css) | `` | 
 | `ingress.enabled` | Expose the API through an ingress | `true` |
 | `ingress.annotations` | Additional annotations on the API ingress | `{}` |

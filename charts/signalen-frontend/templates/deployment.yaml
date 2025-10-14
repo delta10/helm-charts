@@ -57,6 +57,7 @@ spec:
               mountPath: /app.json
               subPath: "app.json"
 
+      {{- if index .Values "frontend-wcag" "enabled" }}
         - name: wcag
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
@@ -68,13 +69,6 @@ spec:
           {{- if ne (len .Values.args) 0 }}
           args: {{ toYaml .Values.args | nindent 12 }}
           {{- end  }}
-          {{- if .Values.wcagEnv }}
-          env:
-            {{- range $key, $value := .Values.wcagEnv }}
-            - name: {{ $key }}
-              value: {{ $value | quote }}
-            {{- end }}
-          {{- end }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
           livenessProbe:
@@ -100,6 +94,7 @@ spec:
             - name: config
               mountPath: /app/public/assets/theme.css
               subPath: "theme.css"
+        {{ end }}
 {{- if ne (len .Values.extraVolumeMounts) 0 }}
 {{ toYaml .Values.extraVolumeMounts | indent 12 }}
 {{- end }}
