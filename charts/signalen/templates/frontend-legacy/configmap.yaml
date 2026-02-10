@@ -1,0 +1,152 @@
+{{- if .Values.frontendLegacy.enabled }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "signalen.frontend-legacy.fullname" . }}
+  labels:
+    {{- include "signalen.frontend-legacy.labels" . | nindent 4 }}
+data:
+  app.json: |
+    {
+      "apiBaseUrl": "https://{{ .Values.hosts.backend }}",
+      "featureFlags": {
+        "assignSignalToDepartment": true,
+        "assignSignalToEmployee": true,
+        "enableReporter": true,
+        "enableNearIncidents": true,
+        "fetchDistrictsFromBackend": true,
+        "fetchQuestionsFromBackend": true,
+        "showVulaanControls": true,
+        "useProjectenSignalType": true,
+        "reporterMailHandledNegativeContactEnabled": false,
+        "enableCsvExport": true,
+        "enableMyIncidents": true,
+        "enablePublicIncidentsMap": true,
+        "enableForwardIncidentToExternal": true,
+        "showMainCategories": true,
+        "showContactEdit": true,
+        "showStandardTextAdminV1": false,
+        "showStandardTextAdminV2": true,
+        "showThorButton": {{ .Values.sigmax.enabled }},
+        "enableLinkedSignals": {{ .Values.featureFlags.enableLinkedSignals }},
+        "disableClosingCategoryOverigOverig": true
+      },
+      "head": {
+        "androidIcon": "https://{{ .Values.hosts.backend }}/signals/media/static/apple-touch-icon.png",
+        "backgroundColor": "#ffffff",
+        "favicon": "https://{{ .Values.hosts.backend }}/signals/media/static/favicon.ico",
+        "iosIcon": "https://{{ .Values.hosts.backend }}/signals/media/static/apple-touch-icon.png",
+        "statusBarStyle": "default"
+      },
+      "language": {
+        "shortTitle": "Meldingen",
+        "siteAddress": "{{ .Values.hosts.frontend }}",
+        "siteTitle": "Meldingen {{ .Values.municipality.name }}",
+        "smallHeaderTitle": "Meldingen",
+        "title": "Meldingen {{ .Values.municipality.name }}",
+        "logoDescription": "Logo Gemeente {{ .Values.municipality.name }}, ga naar de homepage",
+        "consentToContactSharing": "Ja, ik geef de gemeente {{ .Values.municipality.name }} toestemming om mijn contactgegevens te delen met andere organisaties, als dat nodig is om mijn melding goed op te lossen.",
+        "district": "Wijk",
+        "helpText": "Lukt het niet om een melding te doen? Bel ons dan op telefoonnummer [0297 29 16 16](tel:0297291616). We zijn bereikbaar op werkdagen: maandag t/m donderdag van 08.30 tot 17.00 uur of vrijdag 08.30 tot 12.30 uur.",
+        "helpTextHeader": "",
+        "headerTitle": "",
+        "phoneNumber": "0297 29 16 16"
+      },
+      "links": {
+        "help": "https://docs.signalen.org/",
+        "home": "https://www.{{ .Values.municipality.domain }}",
+        "privacy": "https://www.{{ .Values.municipality.domain }}/Bestuur_en_organisatie/Over_ons/Privacyverklaring"
+      },
+      "map": {
+        "municipality": "{{ .Values.municipality.pdokName }}",
+        "options": {
+          "center": [52.083333, 4.4],
+          "maxBounds": [[50, 3], [54, 8]],
+          "maxZoom": 20,
+          "minZoom": 13,
+          "zoom": 15,
+          "crs": "EPSG:3857"
+        },
+        "optionsBackOffice": {
+          "maxZoom": 20,
+          "minZoom": 12,
+          "zoom": 12
+        },
+        "optionsAreaMap": {
+          "zoom": 19,
+          "maxZoom": 20
+        },
+        "optionsOverviewMap": {
+          "flyToMinZoom": 16
+        },
+        "optionsSummaryMap": {
+          "zoom": 17
+        },
+        "optionsIncidentMap": {
+          "zoom": 14,
+          "flyToMinZoom": 17,
+          "flyToMaxZoom": 19
+        },
+        "optionsMapInput": {
+          "zoom": 19
+        },
+        "optionsIncidentDetailLocation": {
+          "zoom": 14
+        },
+        "optionsAssetSelector": {
+          "assetsZoom": 18,
+          "locationZoom": 19
+        },
+        "optionsMyIncidentsMap": {
+          "zoom": 19
+        },
+        "optionsExternalReplyLocation": {
+          "zoom": 14
+        },
+        "optionsExternalReplyMap": {
+          "zoom": 15
+        },
+        "tiles": {
+          "args": [
+            "https://tiles.delta10.cloud/maps/0b087fc2-7f0c-4036-bfa8-71df6e8cccdd/256/{z}/{x}/{y}.png?key=K3FQAjXPERToZYyHKNPG"
+          ],
+          "options": {
+            "maxZoom": 20,
+            "maxNativeZoom": 22,
+            "attribution": "<span aria-hidden='true'>Kaartgegevens © Delta10 © OpenStreetMap bijdragers</span>"
+          }
+        }
+      },
+      "oidc": {
+        "authEndpoint": "https://{{ .Values.hosts.frontend }}/dex/auth",
+        "clientId": "signalen"
+      },
+      "theme": {
+        "colors": {
+          "primary": {
+            "main": "#00205C",
+            "dark": "#34A6A5"
+          },
+          "secondary": {
+            "main": "#464d57",
+            "dark": "#33363c"
+          },
+          "support": {
+            "valid": "#00205C",
+            "invalid": "#cc241d",
+            "focus": "#34A6A5"
+          },
+          "error": {
+            "main": "#cc241d"
+          }
+        }
+      },
+      "logo": {
+        "url": "{{ .Values.municipality.logoUrl }}",
+        "width": "207px",
+        "height": "80px",
+        "smallWidth": "46px",
+        "smallHeight": "18px"
+      }
+    }
+{{- end }}

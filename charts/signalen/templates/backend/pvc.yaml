@@ -1,0 +1,34 @@
+{{- if eq .Values.storage.backend "pvc" }}
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ include "signalen.backend.fullname" . }}-media
+  labels:
+    {{- include "signalen.backend.labels" . | nindent 4 }}
+spec:
+  accessModes:
+    - {{ .Values.storage.pvc.accessMode }}
+  resources:
+    requests:
+      storage: {{ .Values.storage.pvc.mediaSize }}
+{{- if .Values.storage.pvc.storageClassName }}
+  storageClassName: {{ .Values.storage.pvc.storageClassName | quote }}
+{{- end }}
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ include "signalen.backend.fullname" . }}-datawarehouse
+  labels:
+    {{- include "signalen.backend.labels" . | nindent 4 }}
+spec:
+  accessModes:
+    - {{ .Values.storage.pvc.accessMode }}
+  resources:
+    requests:
+      storage: {{ .Values.storage.pvc.datawarehouseSize }}
+{{- if .Values.storage.pvc.storageClassName }}
+  storageClassName: {{ .Values.storage.pvc.storageClassName | quote }}
+{{- end }}
+{{- end }}

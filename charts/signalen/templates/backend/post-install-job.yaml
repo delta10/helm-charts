@@ -1,0 +1,60 @@
+{{- if .Values.backend.enabled }}
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: {{ include "signalen.backend.fullname" . }}-post-install
+  labels:
+    {{- include "signalen.backend.labels" . | nindent 4 }}
+spec:
+  template:
+    metadata:
+      labels:
+        {{- include "signalen.backend.selectorLabels" . | nindent 8 }}
+        job: post-install
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ include "signalen.serviceAccountName" . }}
+      {{- with .Values.podSecurityContext }}
+      securityContext:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      restartPolicy: Never
+      containers:
+        - name: post-install
+          {{- with .Values.securityContext }}
+          securityContext:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          image: "{{ .Values.backend.image.repository }}:{{ .Values.backend.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.pullPolicy }}
+          envFrom:
+            - configMapRef:
+                name: {{ include "signalen.backend.fullname" . }}
+            - secretRef:
+                name: {{ include "signalen.backend.fullname" . }}
+          command:
+            - /bin/sh
+          args:
+            - -c
+            - |
+              /usr/local/bin/python /app/manage.py createcachetable &&
+              /usr/local/bin/python /app/manage.py elastic_index --init &&
+              /usr/local/bin/python /app/manage.py init_status_messages_index
+          resources:
+            {{- toYaml .Values.backend.resources | nindent 12 }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+{{- end }}
