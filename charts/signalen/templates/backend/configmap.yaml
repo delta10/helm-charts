@@ -1,0 +1,72 @@
+{{- if .Values.backend.enabled }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "signalen.backend.fullname" . }}
+  labels:
+    {{- include "signalen.backend.labels" . | nindent 4 }}
+data:
+  ADMIN_ENABLE_LOCAL_LOGIN: "False"
+  ALLOWED_HOSTS: "*"
+  ALLOW_INVALID_ADDRESS_AS_UNVERIFIED: "True"
+  API_PDF_LOGO_STATIC_FILE: "/media/static/logo.png"
+  API_TRANSFORM_SOURCE_BASED_ON_REPORTER: "True"
+  API_TRANSFORM_SOURCE_BASED_ON_REPORTER_DOMAIN_EXTENSIONS: "@{{ .Values.municipality.domain }}"
+  API_TRANSFORM_SOURCE_BASED_ON_REPORTER_SOURCE: "Interne melding"
+  CATEGORY_SLUG_EDITABLE: "True"
+  CELERY_EMAIL_BACKEND: {{ .Values.email.backend | quote }}
+  DATABASE_HOST_OVERRIDE: {{ .Values.postgresql.host | quote }}
+  DATABASE_NAME: {{ .Values.postgresql.database | quote }}
+  DATABASE_PORT_OVERRIDE: "5432"
+  DATABASE_USER: {{ .Values.postgresql.username | quote }}
+  DEFAULT_FROM_EMAIL: {{ .Values.municipality.fromEmail | quote }}
+  DEFAULT_MAP_TILE_SERVER: https://service.pdok.nl/brt/achtergrondkaart/wmts/v2_0/standaard/EPSG:3857/{zoom}/{x}/{y}.png
+  DEFAULT_PDOK_MUNICIPALITIES: {{ .Values.municipality.pdokName | quote }}
+  DELETE_SIGNALS_IN_STATE_X_AFTER_PERIOD_Y_ENABLED: "True"
+  DJANGO_LOG_LEVEL: "error"
+  DJANGO_SETTINGS_MODULE: "signals.settings"
+  DSL_RUN_ROUTING_EXPRESSIONS_ON_UPDATES: "True"
+  DWH_MEDIA_ROOT: "/dwh_media"
+  ELASTICSEARCH_HOST: {{ .Values.elasticsearch.host | quote }}
+  ELASTICSEARCH_INDEX: "{{ .Values.municipality.slug }}-signalen-{{ .Values.environment }}"
+  ELASTICSEARCH_STATUS_MESSAGE_INDEX: "{{ .Values.municipality.slug }}-signalen-{{ .Values.environment }}-status"
+  ELASTICSEARCH_TIMEOUT: "60"
+  EMAIL_HOST: {{ .Values.email.smtp.hostname | quote }}
+  EMAIL_HOST_USER: {{ .Values.email.smtp.username | b64enc | quote }}
+  EMAIL_PORT: {{ .Values.email.smtp.port | quote }}
+  EMAIL_REST_ENDPOINT: {{ .Values.email.rest.endpoint | quote }}
+  EMAIL_USE_TLS: {{ if .Values.email.smtp.useTLS }}"True"{{ else }}"False"{{ end }}
+  EMAIL_USE_SSL: {{ if .Values.email.smtp.useSSL }}"True"{{ else }}"False"{{ end }}
+  ENVIRONMENT: {{ .Values.environment | quote }}
+  FRONTEND_URL: "https://{{ .Values.hosts.frontend }}"
+  JWKS_URL: {{ .Values.jwks.url | quote }}
+  MY_SIGNALS_ENABLED: "True"
+  O365_MAIL_RESOURCE: {{ .Values.email.o365.resource | quote }}
+  O365_MAIL_TENANT_ID: {{ .Values.email.o365.tenantId | quote }}
+  O365_MAIL_CLIENT_ID: {{ .Values.email.o365.clientId | quote }}
+  O365_MAIL_CLIENT_SECRET: {{ .Values.email.o365.clientSecret | quote }}
+  OIDC_OP_ISSUER: https://{{ .Values.hosts.frontend }}/dex
+  OIDC_RP_CLIENT_ID: {{ .Values.oidc.clientId | quote }}
+  OIDC_OP_AUTHORIZATION_ENDPOINT: https://{{ .Values.hosts.frontend }}/dex/auth
+  OIDC_OP_TOKEN_ENDPOINT: http://dex:5556/dex/token
+  OIDC_OP_USER_ENDPOINT: http://dex:5556/dex/userinfo
+  OIDC_OP_JWKS_ENDPOINT: http://dex:5556/dex/keys
+  OIDC_TRUSTED_AUDIENCES: '["signalen"]'
+  OIDC_USE_NONCE: "False"
+  ORGANIZATION_NAME: {{ .Values.municipality.name | quote }}
+  PROTECTED_FILE_SYSTEM_STORAGE: {{ if eq .Values.storage.backend "pvc" }}"True"{{ else }}"False"{{ end }}
+  PUB_JWKS: {{ .Values.jwks.pub | quote }}
+  PUBLIC_THROTTLE_RATE: {{ .Values.publicThrottleRate | quote }}
+  RABBITMQ_HOST: {{ .Values.rabbitmq.host | quote }}
+  RABBITMQ_USER: {{ .Values.rabbitmq.username | quote }}
+  RABBITMQ_VHOST: {{ .Values.rabbitmq.vhost | quote }}
+  REPORTER_MAIL_HANDLED_NEGATIVE_CONTACT_ENABLED: "False"
+  S3_STORAGE_ENABLED: {{ if eq .Values.storage.backend "s3" }}"True"{{ else }}"False"{{ end }}
+  S3_STORAGE_BUCKET_NAME: {{ .Values.storage.s3.bucketName | quote }}
+  S3_ENDPOINT_URL: {{ .Values.storage.s3.endpointUrl | quote }}
+  S3_REGION_NAME: {{ .Values.storage.s3.regionName | quote }}
+  SIGMAX_SERVER: {{ .Values.sigmax.url | quote }}
+  SIGNALS_ML_TOOL_ENDPOINT: "http://classification/signals_mltool"
+  SYSTEM_MAIL_FEEDBACK_RECEIVED_ENABLED: "False"
+  USER_ID_FIELDS: "email"
+{{- end }}

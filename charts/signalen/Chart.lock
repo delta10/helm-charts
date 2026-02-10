@@ -1,0 +1,12 @@
+dependencies:
+- name: postgresql
+  repository: https://charts.bitnami.com/bitnami
+  version: 18.2.6
+- name: rabbitmq
+  repository: https://charts.bitnami.com/bitnami
+  version: 16.0.14
+- name: elasticsearch
+  repository: https://charts.bitnami.com/bitnami
+  version: 22.1.6
+digest: sha256:e6d049086af58d39e95cfc06de71ef98a085f04d995f8b29bd69ae743c450182
+generated: "2026-02-10T22:54:30.630299+01:00"

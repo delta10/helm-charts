@@ -1,0 +1,128 @@
+{{- if .Values.backend.enabled }}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "signalen.backend.fullname" . }}
+  labels:
+    {{- include "signalen.backend.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.backend.replicaCount }}
+  selector:
+    matchLabels:
+      {{- include "signalen.backend.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      annotations:
+        checksum/config: {{ include (print $.Template.BasePath "/backend/configmap.yaml") . | sha256sum }}
+        checksum/secret: {{ include (print $.Template.BasePath "/backend/secret.yaml") . | sha256sum }}
+        {{- with .Values.podAnnotations }}
+        {{- toYaml . | nindent 8 }}
+        {{- end }}
+      labels:
+        {{- include "signalen.backend.labels" . | nindent 8 }}
+        {{- with .Values.podLabels }}
+        {{- toYaml . | nindent 8 }}
+        {{- end }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ include "signalen.serviceAccountName" . }}
+      {{- with .Values.podSecurityContext }}
+      securityContext:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      initContainers:
+        - name: migrate
+          image: "{{ .Values.backend.image.repository }}:{{ .Values.backend.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.pullPolicy }}
+          envFrom:
+            - configMapRef:
+                name: {{ include "signalen.backend.fullname" . }}
+            - secretRef:
+                name: {{ include "signalen.backend.fullname" . }}
+          command:
+            - /bin/sh
+          args:
+            - -c
+            - |
+              /usr/local/bin/python /app/manage.py migrate
+      containers:
+        - name: backend
+          {{- with .Values.securityContext }}
+          securityContext:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          image: "{{ .Values.backend.image.repository }}:{{ .Values.backend.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.pullPolicy }}
+          envFrom:
+            - configMapRef:
+                name: {{ include "signalen.backend.fullname" . }}
+            - secretRef:
+                name: {{ include "signalen.backend.fullname" . }}
+          command: ["uwsgi"]
+          args:
+            - '--master'
+            - '--http=:8000'
+            - '--module=signals.wsgi:application'
+            - '--static-map=/signals/static=/app/static'
+            - '--static-map=/signals/media/static=/app/media/static'
+            - '--static-safe=./app/media'
+            - '--offload-threads=1'
+            - '--collect-header=X-Sendfile X_SENDFILE'
+            - '--response-route-if-not=empty:${X_SENDFILE} static:${X_SENDFILE}'
+            - '--buffer-size=16384'
+            - '--die-on-term'
+            - '--processes=1'
+            - '--threads=2'
+            - '--max-requests=1000'
+          ports:
+            - name: http
+              containerPort: 8000
+              protocol: TCP
+          {{- with .Values.backend.livenessProbe }}
+          livenessProbe:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          {{- with .Values.backend.readinessProbe }}
+          readinessProbe:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          {{- with .Values.backend.resources }}
+          resources:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          volumeMounts:
+            - name: media
+              mountPath: /media
+            - name: dwh-media
+              mountPath: /dwh_media
+      volumes:
+        - name: media
+        {{- if eq .Values.storage.backend "pvc" }}
+          persistentVolumeClaim:
+            claimName: {{ include "signalen.backend.fullname" . }}-media
+        {{- else }}
+          emptyDir: {}
+        {{- end }}
+        - name: dwh-media
+        {{- if eq .Values.storage.backend "pvc" }}
+          persistentVolumeClaim:
+            claimName: {{ include "signalen.backend.fullname" . }}-datawarehouse
+        {{- else }}
+          emptyDir: {}
+        {{- end }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+{{- end }}

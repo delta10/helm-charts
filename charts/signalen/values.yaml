@@ -1,0 +1,215 @@
+environment: acc
+
+secretKey: "something-secret"
+
+featureFlags:
+  enableLinkedSignals: false
+
+municipality:
+  name: "Aa en Hunze"
+  slug: "aaenhunze"
+  pdokName: "aa en hunze"
+  domain: "aaenhunze.nl"
+  fromEmail: "Gemeente Aa en Hunze <noreply@meldingen-acc.aaenhunze.nl>"
+  logoUrl: https://api.meldingen-acc.aaenhunze.nl/signals/media/static/logo.png
+
+jwks:
+  url: "http://dex:5556/dex/keys"
+  pub: ""
+
+oidc:
+  clientId: ""
+  clientSecret: ""
+
+publicThrottleRate: "15/hour"
+
+hosts:
+  backend: api.meldingen-acc.aaenhunze.nl
+  frontend: meldingen.aaenhunze.nl
+
+email:
+  backend: django_o365mail.EmailBackend
+  o365:
+    tenantId: ""
+    clientId: ""
+    clientSecret: ""
+    resource: ""
+  smtp:
+    hostname: ""
+    port: "587"
+    username: ""
+    password: ""
+    useTLS: false
+    useSSL: false
+  rest:
+    endpoint: ""
+
+sigmax:
+  enabled: false
+  url: ""
+  authToken: ""
+
+storage:
+  backend: "pvc" # or s3
+  s3:
+    accessKey: ""
+    secretKey: ""
+    bucketName: ""
+    endpointUrl: ""
+    regionName: ""
+  pvc:
+    storageClassName: ""
+    accessMode: "ReadWriteOnce"
+    mediaSize: 10Gi
+    datawarehouseSize: 20Gi
+
+postgresql:
+  host: postgresql
+  username: signalen
+  password: signalen
+  database: signalen
+
+rabbitmq:
+  host: rabbitmq
+  username: signalen
+  password: signalen
+  vhost: /
+
+elasticsearch:
+  host: elasticsearch
+
+frontendLegacy:
+  enabled: true
+  replicaCount: 1
+  image:
+    repository: ghcr.io/delta10/signalen-frontend
+    tag: "2.27.3"
+  resources: {}
+    # limits:
+    #   cpu: 100m
+    #   memory: 128Mi
+    # requests:
+    #   cpu: 100m
+    #   memory: 128Mi
+  ingress:
+    enabled: false
+    className: ""
+    annotations: {}
+    hosts:
+      - host: chart-example.local
+        paths:
+          - path: /
+            pathType: Prefix
+    tls: []
+  httproute:
+    enabled: false
+    parentRefs:
+      - name: gateway
+        namespace: gateway-system
+    hostnames:
+      - chart-example.local
+
+frontendWcag:
+  enabled: false
+  replicaCount: 1
+  image:
+    repository: ghcr.io/delta10/signalen-frontend-wcag
+    tag: "0.0.6"
+  resources: {}
+    # limits:
+    #   cpu: 100m
+    #   memory: 128Mi
+    # requests:
+    #   cpu: 100m
+    #   memory: 128Mi
+  ingress:
+    enabled: false
+    className: ""
+    annotations: {}
+    hosts:
+      - host: chart-example.local
+        paths:
+          - path: /
+            pathType: Prefix
+    tls: []
+  httproute:
+    enabled: false
+    parentRefs:
+      - name: gateway
+        namespace: gateway-system
+    hostnames:
+      - chart-example.local
+
+backend:
+  enabled: true
+  replicaCount: 1
+  image:
+    repository: ghcr.io/delta10/signalen-backend
+    tag: "2.50.5"
+  resources: {}
+    # limits:
+    #   cpu: 100m
+    #   memory: 128Mi
+    # requests:
+    #   cpu: 100m
+    #   memory: 128Mi
+  ingress:
+    enabled: false
+    className: ""
+    annotations: {}
+    hosts:
+      - host: chart-example.local
+        paths:
+          - path: /api
+            pathType: Prefix
+    tls: []
+  httproute:
+    enabled: false
+    parentRefs:
+      - name: gateway
+        namespace: gateway-system
+    hostnames:
+      - chart-example.local
+
+# Global image pull policy
+pullPolicy: IfNotPresent
+
+# This is to override the chart name.
+nameOverride: ""
+fullnameOverride: ""
+
+# This section builds out the service account more information can be found here: https://kubernetes.io/docs/concepts/security/service-accounts/
+serviceAccount:
+  # Specifies whether a service account should be created
+  create: true
+  # Automatically mount a ServiceAccount's API credentials?
+  automount: true
+  # Annotations to add to the service account
+  annotations: {}
+  # The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name: ""
+
+# This is for setting Kubernetes Annotations to a Pod.
+# For more information checkout: https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/
+podAnnotations: {}
+# This is for setting Kubernetes Labels to a Pod.
+# For more information checkout: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/
+podLabels: {}
+
+podSecurityContext: {}
+  # fsGroup: 2000
+
+securityContext: {}
+  # capabilities:
+  #   drop:
+  #   - ALL
+  # readOnlyRootFilesystem: true
+  # runAsNonRoot: true
+  # runAsUser: 1000
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
