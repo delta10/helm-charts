@@ -1,7 +1,0 @@
-apiVersion: v2
-name: gw
-description: Gateway from Signalen to other legacy applications
-type: application
-
-version: 0.3.2
-appVersion: 0.2.2

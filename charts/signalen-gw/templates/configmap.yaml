@@ -1,9 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: {{ include "signalen-gw.fullname" . }}
-  labels:
-    {{- include "signalen-gw.labels" . | nindent 4 }}
-data:
-  settings.py: |-
-    {{ .Values.settings | nindent 4 }}
