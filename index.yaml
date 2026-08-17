@@ -803,6 +803,16 @@ entries:
     version: 0.1.0
   signalen-frontend-wcag:
   - apiVersion: v2
+    appVersion: 0.2.0
+    created: "2026-08-17T06:00:51.13829851Z"
+    description: Improved accessible (WCAG) frontend for Signalen 1.0
+    digest: ea2e6d4ee1e88dbf71f80ab806cf22902e130f54ffba7611123cc986db8f293b
+    name: signalen-frontend-wcag
+    type: application
+    urls:
+    - https://github.com/delta10/helm-charts/releases/download/signalen-frontend-wcag-0.2.0/signalen-frontend-wcag-0.2.0.tgz
+    version: 0.2.0
+  - apiVersion: v2
     appVersion: 0.1.2
     created: "2026-06-16T13:40:50.93987542Z"
     description: Improved accessible (WCAG) frontend for Signalen 1.0
