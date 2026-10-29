@@ -3,5 +3,5 @@ name: signalen-frontend-wcag
 description: Improved accessible (WCAG) frontend for Signalen 1.0
 
 type: application
-version: 0.2.2
-appVersion: 0.2.2
+version: 0.2.4
+appVersion: 0.2.4
